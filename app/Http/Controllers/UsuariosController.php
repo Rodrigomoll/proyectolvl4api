@@ -20,6 +20,17 @@ class UsuariosController extends Controller
         return response()->json($usuarios, 200);
     }
 
+    public function show($id)
+    {
+        $usuario = Usuarios::find($id);
+
+        if(!$usuario){
+            return response()->json(['error' => 'Usuario no encontrado'], 404);
+        }
+
+        return response()->json($usuario, 200);
+    }
+
     /**
      * Store a newly created resource in storage.
      */

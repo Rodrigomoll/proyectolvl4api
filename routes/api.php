@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BitacorasController;
 use App\Http\Controllers\PaginasController;
 use App\Http\Controllers\RolesController;
@@ -18,6 +19,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('login',[AuthController::class, 'login']);
+Route::post('logout',[AuthController::class, 'logout']);
+Route::middleware('auth:sanctum')->get('getUserInfo', [AuthController::class, 'getUserInfo']);
+Route::middleware('auth:sanctum')->post('updateUserInfo', [AuthController::class, 'updateUserInfo']);
+
 Route::get('roles',[RolesController::class, 'index']);
 Route::post('roles',[RolesController::class, 'store']);
 Route::put('roles/{id}',[RolesController::class, 'put']);
@@ -25,6 +31,7 @@ Route::delete('roles/{id}',[RolesController::class, 'destroy']);
 
 // Rutas para Usuarios
 Route::get('usuarios', [UsuariosController::class, 'index']);
+Route::get('usuarios/{id}', [UsuariosController::class, 'show']);
 Route::post('usuarios', [UsuariosController::class, 'store']);
 Route::put('usuarios/{id}', [UsuariosController::class, 'update']);
 Route::delete('usuarios/{id}', [UsuariosController::class, 'destroy']);
