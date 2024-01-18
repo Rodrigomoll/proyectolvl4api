@@ -27,7 +27,7 @@ class UsuariosFactory extends Factory
             'primerApellido' => 'administrador1',
             'segundoApellido' => 'administrador2',
             'usuario' => 'admin@admin',
-            'password' => Hash::make('password'),
+            'password' => Hash::make('123'),
             'estado' => true,
             'idRol' => $rol->id,
         ];
