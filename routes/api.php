@@ -20,9 +20,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('login',[AuthController::class, 'login']);
-Route::post('logout',[AuthController::class, 'logout']);
+Route::middleware('auth:sanctum')->post('logout', [AuthController::class, 'logout']);
 Route::middleware('auth:sanctum')->get('getUserInfo', [AuthController::class, 'getUserInfo']);
-Route::middleware('auth:sanctum')->post('updateUserInfo', [AuthController::class, 'updateUserInfo']);
+Route::middleware('auth:sanctum')->put('updateUserInfo', [AuthController::class, 'updateUserInfo']);
+Route::middleware('auth:sanctum')->get('/getUserInfo/{usuario}', [AuthController::class, 'getUserInfoByUsername']);
+Route::middleware('auth:sanctum')->put('/updateUsuarioInfo/{usuario}', [AuthController::class, 'updateUsuarioInfo']);
 
 Route::get('roles',[RolesController::class, 'index']);
 Route::post('roles',[RolesController::class, 'store']);
